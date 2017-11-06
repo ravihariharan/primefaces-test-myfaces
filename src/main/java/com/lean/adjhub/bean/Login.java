@@ -1,15 +1,10 @@
 package com.lean.adjhub.bean;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.el.MethodExpression;
-import javax.el.ValueExpression;
 import javax.faces.component.UIComponent;
-import javax.faces.component.UIViewRoot;
-import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
@@ -25,19 +20,7 @@ import com.lean.adjhub.model.LoginModel;
 
 @Named
 @ViewScoped
-public class Login implements Serializable {
-
-    private static final String UNEXPECTED_ERROR_CONSULT_LOGS_FOR_MORE_INFORMATION = "Unexpected error - consult logs for more information";
-
-    private static final String INCORRECT_PASSWORD = "Incorrect password";
-
-    private static final String USER_DOES_NOT_EXIST = "User does not exist";
-
-    private static final String LOGON_ACCEPTED = "Logon accepted";
-
-    private static final String PASSWORD_CHANGE_REQUIRED = "Password Change Required";
-
-    private static final String USER_IS_ALREADY_LOGGED_IN = "User is already logged in";
+public class Login extends BaseBean {
 
     private LoginModel model = new LoginModel();
 
@@ -67,47 +50,6 @@ public class Login implements Serializable {
         list.add(new Spacer());
 
         addComponent("form:addComponenetGrid", list);
-    }
-
-    public void addComponent(String name, List<UIComponent> list) {
-        if (list != null && list.size() > 0) {
-            findComponent(name).getChildren().addAll(list);
-        }
-    }
-
-    public static ValueExpression createValueExpression(String valueExpression, Class<?> valueType) {
-        FacesContext facesContext = getFacesContext();
-        return facesContext.getApplication().getExpressionFactory().createValueExpression(facesContext.getELContext(),
-                valueExpression, valueType);
-    }
-
-    public static MethodExpression createActionExpression(String actionExpression, Class<?> returnType) {
-        FacesContext facesContext = getFacesContext();
-        return facesContext.getApplication().getExpressionFactory().createMethodExpression(facesContext.getELContext(),
-                actionExpression, returnType, new Class[0]);
-    }
-
-    public static MethodExpression createActionExpression(String actionExpression, Class<?> returnType,
-            Class<?>[] expectedParamTypes) {
-        FacesContext facesContext = getFacesContext();
-        return facesContext.getApplication().getExpressionFactory().createMethodExpression(facesContext.getELContext(),
-                actionExpression, returnType, expectedParamTypes);
-    }
-
-    public static FacesContext getFacesContext() {
-        FacesContext context = FacesContext.getCurrentInstance();
-        return context;
-    }
-
-    public static UIViewRoot getUIViewRoot() {
-        FacesContext context = getFacesContext();
-        UIViewRoot viewRoot = context.getViewRoot();
-        return viewRoot;
-    }
-
-    public static UIComponent findComponent(String name) {
-        UIComponent findComponent = getUIViewRoot().findComponent(name);
-        return findComponent;
     }
 
     private CommandButton getButton(String name, String caption, String action, boolean forece) {
@@ -148,8 +90,6 @@ public class Login implements Serializable {
         text.setId(name);
         text.setAutocomplete("off");
         String valueExpression = "#{" + managedBeanName + "." + modelBeanName + "." + name + "}";
-        // logger.logDebug("HtmlInputText createTextValueExpression " +
-        // valueExpression);
         text.setValueExpression(PropertyConstants.VALUE, createValueExpression(valueExpression, String.class));
         text.setStyleClass("inputText");
         text.setRequired(true);
@@ -182,8 +122,6 @@ public class Login implements Serializable {
         text.setAutocomplete("off");
         text.setRedisplay(true);
         String valueExpression = "#{" + managedBeanName + "." + modelBeanName + "." + name + "}";
-        // logger.logDebug("HtmlInputText createTextValueExpression " +
-        // valueExpression);
         text.setValueExpression(PropertyConstants.VALUE, createValueExpression(valueExpression, String.class));
         text.setStyleClass("inputText");
         text.setRequired(true);

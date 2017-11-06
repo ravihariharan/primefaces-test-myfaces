@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<title>PrimeFaces Focus Test</title>
+</h:head>
+<h:body>
+
+	<h:form>
+		<p:panel id="panel" header="Register">
+
+			<p:focus context="panel" for="#{focusView.forFocus}" />
+
+			<p:messages />
+
+			<h:panelGrid columns="3">
+				<p:outputLabel for="username" value="Username" />
+				<p:inputText id="username" value="#{focusView.username}"
+					required="true" label="User Name">
+					<f:validateLength minimum="2" />
+				</p:inputText>
+				<p:message for="username" />
+
+				<p:outputLabel for="password" value="Password" />
+				<p:inputText id="password" value="#{focusView.password}"
+					required="true" label="Password" />
+				<p:message for="password" />
+			</h:panelGrid>
+
+			<p:commandButton id="submitButton" value="Save" update="@parent"
+				actionListener="#{focusView.save}" />
+		</p:panel>
+	</h:form>
+</h:body>
+</html>

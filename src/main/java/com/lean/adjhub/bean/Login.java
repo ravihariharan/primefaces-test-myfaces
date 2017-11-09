@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.bean.ManagedBean;
 import javax.faces.component.UIComponent;
 import javax.faces.view.ViewScoped;
-import javax.inject.Named;
 
 import org.primefaces.component.commandbutton.CommandButton;
 import org.primefaces.component.inputtext.InputText;
@@ -18,7 +18,7 @@ import org.primefaces.component.spacer.Spacer;
 import com.lean.adjhub.common.constants.PropertyConstants;
 import com.lean.adjhub.model.LoginModel;
 
-@Named
+@ManagedBean
 @ViewScoped
 public class Login extends BaseBean {
 
@@ -38,15 +38,15 @@ public class Login extends BaseBean {
         list.addAll(getEditBox("group", "Group"));
         list.addAll(getEditBox("user", "User"));
         list.addAll(getPasswordBox("password", "Password"));
-
+        
         CommandButton buttonLogin = getButton("loginGeneral", "Login", "loginGeneral(false)", false);
         buttonLogin.setStyleClass("button primary");
         list.add(buttonLogin);
-
+        /* 
         CommandButton buttonForce = getButton("loginForce", "Login Force", "loginGeneral(true)", true);
         buttonForce.setStyleClass("button secondary");
         list.add(buttonForce);
-        list.add(new Spacer());
+        list.add(new Spacer());*/
         list.add(new Spacer());
 
         addComponent("form:addComponenetGrid", list);
@@ -66,7 +66,7 @@ public class Login extends BaseBean {
         if (forece) {
             String valueExpression = "#{" + managedBeanName + "." + modelBeanName + "." + "loginForceRender" + "}";
             commandButton.setValueExpression(PropertyConstants.RENDERED,
-                    createValueExpression(valueExpression, String.class));
+                    createValueExpression(valueExpression, Boolean.class));
         }
 
         commandButton.setAjax(false);

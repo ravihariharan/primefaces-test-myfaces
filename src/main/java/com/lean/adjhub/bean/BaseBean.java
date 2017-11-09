@@ -21,6 +21,10 @@ public class BaseBean implements Serializable {
         }
     }
 
+    public void addComponent(String name, UIComponent list) {
+        findComponent(name).getChildren().add(list);
+    }
+
     public static ValueExpression createValueExpression(String valueExpression, Class<?> valueType) {
         FacesContext facesContext = getFacesContext();
         return facesContext.getApplication().getExpressionFactory().createValueExpression(facesContext.getELContext(),

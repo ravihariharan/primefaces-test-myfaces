@@ -20,7 +20,7 @@ public class TestNull extends BaseBean {
 
     @PostConstruct
     public void postConstruct() {
-        //PanelGrid panel = new PanelGrid();
+        //HtmlPanelGroup panel = new HtmlPanelGroup();
 
         HtmlPanelGroup panel = (HtmlPanelGroup) FacesContext.getCurrentInstance().getApplication()
                 .createComponent(HtmlPanelGroup.COMPONENT_TYPE);

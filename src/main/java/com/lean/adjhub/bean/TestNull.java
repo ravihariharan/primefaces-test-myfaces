@@ -3,6 +3,7 @@ package com.lean.adjhub.bean;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 import org.primefaces.component.panelgrid.PanelGrid;
 
@@ -20,7 +21,11 @@ public class TestNull extends BaseBean {
 
     @PostConstruct
     public void postConstruct() {
-        PanelGrid panel = new PanelGrid();
+        //PanelGrid panel = new PanelGrid();
+
+        PanelGrid panel = (PanelGrid) FacesContext.getCurrentInstance().getApplication()
+                .createComponent(PanelGrid.COMPONENT_TYPE);
+
         String valueExpression = "#{testNull.testNullRender}";
         panel.setValueExpression(PropertyConstants.RENDERED, createValueExpression(valueExpression, Boolean.class));
 

@@ -10,8 +10,9 @@
 <h:body>
 	<h:form id="form">
 		<h:outputLabel value="Check the field..."></h:outputLabel>
-		<h:inputText value="Hello World!"
-			rendered="#{testNull.testNullRender}" />
+		<h:panelGroup id="panelId0" rendered="#{testNull.testNullRender}">
+			<h:inputText value="Hello.."></h:inputText>
+		</h:panelGroup>
 		<h:panelGroup id="panelId"></h:panelGroup>
 	</h:form>
 

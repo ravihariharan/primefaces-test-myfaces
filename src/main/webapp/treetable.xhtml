@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<title>PrimeFaces Test</title>
+</h:head>
+<h:body>
+
+	<h1>#{testView.testString}</h1>
+
+	<p:treeTable value="#{ttBasicView.root}" var="document">
+		<f:facet name="header">
+            Document Viewer
+        </f:facet>
+		<p:column headerText="Name">
+			<h:outputText value="#{document.name}" />
+		</p:column>
+		<p:column headerText="Size">
+			<h:outputText value="#{document.size}" />
+		</p:column>
+		<p:column headerText="Type">
+			<h:outputText value="#{document.type}" />
+		</p:column>
+	</p:treeTable>
+</h:body>
+</html>
